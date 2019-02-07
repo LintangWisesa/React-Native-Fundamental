@@ -4,7 +4,10 @@ import { View, Text, StyleSheet } from 'react-native'
 class App extends Component {
   render(){
     return(
-      <View style={{flexDirection: 'row'}}>
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'center'
+      }}>
         <View style={[desain.box, desain.box1]}></View>
         <View style={[desain.box, desain.box2]}></View>
         <View style={[desain.box, desain.box3]}></View>
