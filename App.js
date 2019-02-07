@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { View, ActivityIndicator } from 'react-native'
+import { View, WebView } from 'react-native'
 
 class App extends Component {
   render(){
     return(
       <View>
-        <ActivityIndicator size='small' color='blue'/>
-        <ActivityIndicator size='large' color='red'/>
-        <ActivityIndicator size='small' color='green'/>
-        <ActivityIndicator size='large' color='yellow'/>
+        <WebView
+          source={{uri: 'https://www.tokopedia.com/'}}
+        />
       </View>
     )
   }
