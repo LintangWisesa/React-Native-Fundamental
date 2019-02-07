@@ -1,0 +1,11 @@
+// install react-native-cli
+$ npm i -g react-native-cli
+
+// create RN project
+$ react-native init namaProjek
+
+// run RN project
+1. run AVD (Android Studio / Genymotion)
+2. $ cd namaProjek
+   $ react-native run-android
+

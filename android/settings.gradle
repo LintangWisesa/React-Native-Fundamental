@@ -1,0 +1,3 @@
+rootProject.name = 'androsatu'
+
+include ':app'
