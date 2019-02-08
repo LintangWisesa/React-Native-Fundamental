@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { View, WebView } from 'react-native'
+import { View } from 'react-native'
 
 class App extends Component {
+  state = {nama: ''}
   render(){
     return(
-      <View>
-        <WebView
-          source={{uri: 'https://www.tokopedia.com/'}}
-        />
+      <View style={{padding: 25}}>
+        
       </View>
     )
   }
