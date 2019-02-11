@@ -8,16 +8,13 @@ import { Alert } from 'react-native'
 class App extends Component {
   state = {
     nama: '',
-    players: [],
-    negara: []
+    players: []
   }
   getapi = ()=>{
     var url = `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=${this.state.nama}`
     axios.get(url).then((x)=>{
       if (x.data.player){
-        this.setState({
-          players: x.data.player
-        })
+        this.setState({players: x.data.player})
       } else {
         Alert.alert('Data tidak tersedia')
       }
@@ -31,15 +28,6 @@ class App extends Component {
       var nama = val.strPlayer
       var posisi = val.strPosition
       var foto = val.strThumb
-      var negara = val.strNationality
-      axios.get(`https://restcountries.eu/rest/v2/name/${negara}`)
-        .then((x)=>{
-          this.setState({
-            negara: x.data
-        })
-      }).catch((x)=>{
-        console.log('Gagal!')
-      })
       return (
         <ListItem key={i} avatar>
           <Left>
@@ -51,11 +39,6 @@ class App extends Component {
             <Text>{nama}</Text>
             <Text note>{posisi}</Text>
           </Body>
-          <Right>
-            <Thumbnail style={{width: 20, height: 20}} square
-            source={{uri: `https://www.countryflags.io/${fotoNegara}/shiny/64.png`}}
-            />
-          </Right>
         </ListItem>
       )
     })

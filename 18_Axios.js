@@ -2,22 +2,19 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Container, Header, Left, Body, Right, Title, Icon,
   Content, Footer, Button, Item, Input, Text, List,
-  ListItem, Thumbnail} from 'native-base'
+  ListItem} from 'native-base'
 import { Alert } from 'react-native'
 
 class App extends Component {
   state = {
     nama: '',
-    players: [],
-    negara: []
+    players: []
   }
   getapi = ()=>{
     var url = `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=${this.state.nama}`
     axios.get(url).then((x)=>{
       if (x.data.player){
-        this.setState({
-          players: x.data.player
-        })
+        this.setState({players: x.data.player})
       } else {
         Alert.alert('Data tidak tersedia')
       }
@@ -29,33 +26,11 @@ class App extends Component {
 
     var dataPlayers = this.state.players.map((val, i)=>{
       var nama = val.strPlayer
-      var posisi = val.strPosition
-      var foto = val.strThumb
-      var negara = val.strNationality
-      axios.get(`https://restcountries.eu/rest/v2/name/${negara}`)
-        .then((x)=>{
-          this.setState({
-            negara: x.data
-        })
-      }).catch((x)=>{
-        console.log('Gagal!')
-      })
       return (
-        <ListItem key={i} avatar>
-          <Left>
-            <Thumbnail
-            source = {{uri: foto}}
-            />
-          </Left>
+        <ListItem key={i}>
           <Body>
             <Text>{nama}</Text>
-            <Text note>{posisi}</Text>
           </Body>
-          <Right>
-            <Thumbnail style={{width: 20, height: 20}} square
-            source={{uri: `https://www.countryflags.io/${fotoNegara}/shiny/64.png`}}
-            />
-          </Right>
         </ListItem>
       )
     })
@@ -70,13 +45,13 @@ class App extends Component {
             />
           </Item>
         </Header>
-        <Button full iconLeft success
-        onPress={this.getapi}
-        >
-          <Icon name='logo-facebook'/>
-          <Text>Cari player</Text>
-        </Button>
         <Content>
+          <Button full iconLeft success
+          onPress={this.getapi}
+          >
+            <Icon name='logo-facebook'/>
+            <Text>Cari player</Text>
+          </Button>
           <List>
             {dataPlayers}
           </List>
